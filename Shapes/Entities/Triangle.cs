@@ -6,6 +6,10 @@ public class Triangle : IShape
 {
     public Triangle(decimal sideA, decimal sideB, decimal sideC)
     {
+        if (sideA <= 0 || sideB <= 0 || sideC <= 0)
+        {
+            throw TriangleException.ValueLessThenZeroException(sideA,sideB, sideC);
+        }
         if (!IsInequalitySatisfied(sideA,sideB,sideC))
         {
             throw TriangleException.TriangleInequalityNotSatisfied(sideA, sideB, sideC);

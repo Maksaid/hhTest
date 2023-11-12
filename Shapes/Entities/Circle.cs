@@ -1,10 +1,16 @@
 ﻿
+using Shapes.Exceptions;
+
 namespace Shapes.Entities;
 
 public class Circle : IShape
 {
     public Circle(decimal radius)
     {
+        if (radius <= 0)
+        {
+            throw CircleException.ValueLessThenZeroException(radius);
+        }
         Radius = radius;
     }
 
