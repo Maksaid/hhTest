@@ -1,5 +1,5 @@
-﻿
-using Shapes;
+﻿using Shapes;
+using Shapes.Entities;
 
 Circle circle = new Circle(10);
 Console.WriteLine(circle.CountSquare());

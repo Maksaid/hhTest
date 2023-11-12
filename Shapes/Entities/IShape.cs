@@ -1,4 +1,4 @@
-﻿namespace Shapes;
+﻿namespace Shapes.Entities;
 
 public interface IShape
 {

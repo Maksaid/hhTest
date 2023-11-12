@@ -1,21 +1,19 @@
-﻿namespace Shapes;
+﻿using Shapes.Exceptions;
+
+namespace Shapes.Entities;
 
 public class Triangle : IShape
 {
     public Triangle(decimal sideA, decimal sideB, decimal sideC)
     {
-        if (sideA < sideB + sideC)
+        if (!IsInequalitySatisfied(sideA,sideB,sideC))
         {
-            if (sideB < sideA + sideC)
-                if (sideC < sideA + sideB)
-                {
-                    SideA = sideA;
-                    SideB = sideB;
-                    SideC = sideC;
-                }
+            throw TriangleException.TriangleInequalityNotSatisfied(sideA, sideB, sideC);
         }
-        else
-                    throw new Exception("TRIANGLE CANNOT EXIST");
+
+        SideA = sideA;
+        SideB = sideB;
+        SideC = sideC;
     }
 
     public decimal SideA { get; set; }
@@ -38,5 +36,20 @@ public class Triangle : IShape
     public decimal CountPerimeter()
     {
         return SideA + SideB + SideC;
+    }
+
+    private bool IsInequalitySatisfied(decimal sideA, decimal sideB, decimal sideC)
+    {
+        if (sideA < sideB + sideC)
+            if (sideB < sideA + sideC)
+                if (sideC < sideA + sideB)
+                    return true;
+        return false;
+                
+    }
+
+    public override string ToString()
+    {
+        return $"{nameof(SideA)}: {SideA}, {nameof(SideB)}: {SideB}, {nameof(SideC)}: {SideC}, {nameof(IsRightAngled)}: {IsRightAngled}, {nameof(Perimeter)}: {Perimeter}, Square: {CountSquare()}";
     }
 }

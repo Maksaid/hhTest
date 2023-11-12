@@ -1,4 +1,5 @@
-﻿namespace Shapes;
+﻿
+namespace Shapes.Entities;
 
 public class Circle : IShape
 {
@@ -19,5 +20,10 @@ public class Circle : IShape
     public decimal CountPerimeter()
     {
         return 2 * Radius * (decimal)Math.PI;
+    }
+
+    public override string ToString()
+    {
+        return $"{nameof(Radius)}: {Radius}, {nameof(Perimeter)}: {Perimeter}, Square: {CountSquare()}";
     }
 }
